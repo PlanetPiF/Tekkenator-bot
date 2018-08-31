@@ -14,10 +14,14 @@ import com.planetpif.tekkenator.dao.FighterRepository;
 import com.planetpif.tekkenator.dao.MoveRepository;
 import com.planetpif.tekkenator.model.Fighter;
 import com.planetpif.tekkenator.model.Move;
-
+/**
+ * 
+ * @author TheAwesomePiF
+ *
+ */
 @SpringBootApplication
 @EnableJpaRepositories("com.planetpif.tekkenator")
-public class Application implements CommandLineRunner {
+public class Tekkenator implements CommandLineRunner {
 
 	@Autowired
 	DataSource dataSource;
@@ -29,7 +33,7 @@ public class Application implements CommandLineRunner {
 	private MoveRepository moveRepository;
 
 	@Autowired
-	private TekkenatorBot tekkenatorBot;
+	private JDABot jdaBot;
 
 	@Autowired
 	private BotListenterInterface myBotListener;
@@ -38,7 +42,7 @@ public class Application implements CommandLineRunner {
 	private String token;
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(Tekkenator.class, args);
 	}
 
 	@Override
@@ -47,9 +51,9 @@ public class Application implements CommandLineRunner {
 	}
 
 	public void createBot() {
-		tekkenatorBot.setFighterRepository(fighterRepository);
-		tekkenatorBot.setMoveRepository(moveRepository);
-		tekkenatorBot.init(myBotListener, token);
+		jdaBot.setFighterRepository(fighterRepository);
+		jdaBot.setMoveRepository(moveRepository);
+		jdaBot.init(myBotListener, token);
 	}
 
 	public void addFightesAndMovesToDb(Boolean deleteAfter) {

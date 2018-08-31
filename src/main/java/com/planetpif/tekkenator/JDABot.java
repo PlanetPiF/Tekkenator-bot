@@ -16,7 +16,7 @@ import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
 
 @Service
-public class TekkenatorBot implements DiscordBot {
+public class JDABot implements DiscordBot {
 
     private JDA jda;
     
