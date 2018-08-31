@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import com.planetpif.tekkenator.bot.BotListenterInterface;
+import com.planetpif.tekkenator.bot.JDABot;
 import com.planetpif.tekkenator.dao.FighterRepository;
 import com.planetpif.tekkenator.dao.MoveRepository;
 import com.planetpif.tekkenator.model.Fighter;
@@ -35,8 +37,8 @@ public class Tekkenator implements CommandLineRunner {
 	@Autowired
 	private JDABot jdaBot;
 
-	@Autowired
-	private BotListenterInterface myBotListener;
+/*	@Autowired
+	private BotListenterInterface myBotListener;*/
 
 	@Value("${discord.token}")
 	private String token;
@@ -51,14 +53,14 @@ public class Tekkenator implements CommandLineRunner {
 	}
 
 	public void createBot() {
-		jdaBot.setFighterRepository(fighterRepository);
-		jdaBot.setMoveRepository(moveRepository);
-		jdaBot.init(myBotListener, token);
+		//jdaBot.setFighterRepository(fighterRepository);
+		//jdaBot.setMoveRepository(moveRepository);
+		jdaBot.init(token);
 	}
 
 	public void addFightesAndMovesToDb(Boolean deleteAfter) {
 		/// FOR TESTING PURPOSES
-
+		
 		// ADD FIGHTERS + MOVEs
 
 		// ------------------ FIGHTERS ---------------------

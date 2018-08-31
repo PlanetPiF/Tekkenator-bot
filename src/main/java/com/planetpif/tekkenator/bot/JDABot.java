@@ -1,4 +1,4 @@
-package com.planetpif.tekkenator;
+package com.planetpif.tekkenator.bot;
 
 import javax.security.auth.login.LoginException;
 import javax.sql.DataSource;
@@ -48,19 +48,16 @@ public class JDABot implements DiscordBot {
 	@Autowired
 	private BotListenterInterface myBotListener;
 
-	public boolean init(BotListenterInterface listener, String token) {
+	public boolean init(String token) {
         try {
             jda = new JDABuilder(AccountType.BOT)
                     .setToken(token)
                     .setGame(Game.playing("Tekken 7"))
                     .setStatus(OnlineStatus.DO_NOT_DISTURB)
-                    .addEventListener(listener)
+                    .addEventListener(myBotListener)
                     .build();
         } catch (LoginException e) {
             e.printStackTrace();
-        }
-        if(moveRepository == null) {
-        	System.out.println("moveRepository is NULL on init");
         }
         
         return true;

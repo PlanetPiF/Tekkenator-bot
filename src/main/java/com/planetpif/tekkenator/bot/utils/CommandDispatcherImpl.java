@@ -1,4 +1,4 @@
-package com.planetpif.tekkenator.bot;
+package com.planetpif.tekkenator.bot.utils;
 
 import org.springframework.stereotype.Service;
 

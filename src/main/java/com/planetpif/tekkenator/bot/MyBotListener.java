@@ -1,4 +1,4 @@
-package com.planetpif.tekkenator;
+package com.planetpif.tekkenator.bot;
 
 import javax.sql.DataSource;
 
