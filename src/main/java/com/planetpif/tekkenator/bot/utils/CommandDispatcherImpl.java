@@ -108,6 +108,8 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 
 		// Last but not least - send message at the end of function
 		if(emb != null) {
+		//	System.out.println("emb looks like: ");
+		//	System.out.println(emb.toJSONObject().toString());   // can i convert backwards from JSON ? 
 			event.getChannel().sendMessage(emb).queue();
 		} else {
 			event.getChannel().sendMessage(textMessage).queue();
