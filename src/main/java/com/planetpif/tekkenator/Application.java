@@ -53,10 +53,10 @@ public class Application implements CommandLineRunner {
 	}
 
 	public void addFightesAndMovesToDb(Boolean deleteAfter) {
-		/// FOR TESTING PURPOSES 
-		
+		/// FOR TESTING PURPOSES
+
 		// ADD FIGHTERS + MOVEs
-		
+
 		// ------------------ FIGHTERS ---------------------
 
 		// Add Fighter - Eddy
@@ -102,43 +102,5 @@ public class Application implements CommandLineRunner {
 			fighterRepository.delete(devilJin);
 		}
 	}
-
-	/*
-	 * @Override public void onReady(ReadyEvent event) {
-	 * System.out.println("I am ready to go!"); }
-	 * 
-	 * @Override public void onMessageReceived(MessageReceivedEvent event) {
-	 * System.out.printf("[%s]: %s\n", event.getAuthor().getName(),
-	 * event.getMessage().getContentDisplay());
-	 * 
-	 * String chatCommand = event.getMessage().getContentRaw(); String response =
-	 * "";
-	 * 
-	 * if (chatCommand.equals("!hi")) { response = "Hello there, @" +
-	 * event.getAuthor().getName() + " !";
-	 * event.getChannel().sendMessage(response).queue(); }
-	 * 
-	 * if(chatCommand.equals("!moves")) {
-	 * 
-	 * Iterable<Move> movesList = moveRepository.findAll();
-	 * System.out.println("Total Moves: " + moveRepository.count()); for (Move move
-	 * : movesList) { response += (move.getName() + " belongs to " +
-	 * move.getFighter().getName() + ". \n"); }
-	 * 
-	 * 
-	 * event.getChannel().sendMessage(response).queue(); }
-	 * 
-	 * // TDD ?
-	 * 
-	 * 
-	 * if(event.getMessage().getContentRaw().substring(0, 1).equals("!")) {
-	 * if(event.getMessage().getContentRaw().equals("!ewgf")) { TestHelper th = new
-	 * TestHelper(); Move move = moveService.getById(null);
-	 * event.getChannel().sendMessage(move.getMoveDetails()).queue(); } }
-	 * 
-	 * 
-	 * // Prevent infinite loops from this and other bots if
-	 * (event.getAuthor().isBot()) { return; } }
-	 */
 
 }
