@@ -13,8 +13,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import net.minidev.json.annotate.JsonIgnore;
-
 @Entity
 @Table(name =  "MOVES")
 public class Move {
@@ -39,7 +37,6 @@ public class Move {
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "fighter_id", nullable = false)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JsonIgnore
 	private Fighter fighter;
 
 	public long getId() {

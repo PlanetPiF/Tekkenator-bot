@@ -1,4 +1,5 @@
-package com.michaelcgood.app;
+package com.planetpif.tekkenator.app;
+/*package com.michaelcgood.app;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,3 +15,4 @@ public class MysqlJdbcDriverApplicationTests {
 	}
 
 }
+*/

@@ -1,0 +1,5 @@
+com\planetpif\tekkenator\dao\MoveRepository.class
+com\planetpif\tekkenator\model\Move.class
+com\planetpif\tekkenator\TekkenatorApplication.class
+com\planetpif\tekkenator\model\Fighter.class
+com\planetpif\tekkenator\dao\FighterRepository.class

@@ -1,11 +1,8 @@
 package com.planetpif.tekkenator.dao;
 
-import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.planetpif.tekkenator.model.Fighter;
 import com.planetpif.tekkenator.model.Move;
 
 @Repository
