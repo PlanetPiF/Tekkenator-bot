@@ -1,5 +1,11 @@
+D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\bot\DiscordBot.java
+D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\bot\BotListenterInterface.java
 D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\dao\MoveRepository.java
 D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\model\Fighter.java
+D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\bot\JDABot.java
+D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\bot\utils\CommandDispatcherImpl.java
+D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\bot\utils\CommandDispatcher.java
 D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\model\Move.java
 D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\dao\FighterRepository.java
-D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\TekkenatorApplication.java
+D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\bot\MyBotListener.java
+D:\Dev\Projects\Tekkenator-bot\src\main\java\com\planetpif\tekkenator\Tekkenator.java

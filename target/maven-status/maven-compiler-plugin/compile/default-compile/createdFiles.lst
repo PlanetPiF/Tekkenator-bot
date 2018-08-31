@@ -1,5 +1,11 @@
-com\planetpif\tekkenator\dao\MoveRepository.class
+com\planetpif\tekkenator\bot\BotListenterInterface.class
+com\planetpif\tekkenator\Tekkenator.class
 com\planetpif\tekkenator\model\Move.class
-com\planetpif\tekkenator\TekkenatorApplication.class
+com\planetpif\tekkenator\bot\JDABot.class
+com\planetpif\tekkenator\bot\utils\CommandDispatcherImpl.class
 com\planetpif\tekkenator\model\Fighter.class
+com\planetpif\tekkenator\dao\MoveRepository.class
+com\planetpif\tekkenator\bot\MyBotListener.class
+com\planetpif\tekkenator\bot\utils\CommandDispatcher.class
+com\planetpif\tekkenator\bot\DiscordBot.class
 com\planetpif\tekkenator\dao\FighterRepository.class

@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.planetpif.tekkenator.bot.utils.CommandDispatcher;
 import com.planetpif.tekkenator.dao.FighterRepository;
 import com.planetpif.tekkenator.dao.MoveRepository;
 import com.planetpif.tekkenator.model.Move;
@@ -26,13 +27,23 @@ public class MyBotListener extends ListenerAdapter implements BotListenterInterf
 
 	@Autowired
 	private MoveRepository moveRepository;
+	
+	@Autowired
+	private CommandDispatcher commandDispatcher;
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
 		if (event.getAuthor().isBot())
 			return;
 
-		Message message = event.getMessage();
+		
+		int eventType = commandDispatcher.analyze(event);
+		
+		if(eventType != -1) {
+			commandDispatcher.dispatch(eventType, event);
+		}
+		
+		/*Message message = event.getMessage();
 		String chatCommand = message.getContentRaw();
 		if (chatCommand.equals("!ping")) {
 			MessageChannel channel = event.getChannel();
@@ -54,7 +65,7 @@ public class MyBotListener extends ListenerAdapter implements BotListenterInterf
 			}
 
 			event.getChannel().sendMessage(response).queue();
-		}
+		}*/
 
 	}
 
