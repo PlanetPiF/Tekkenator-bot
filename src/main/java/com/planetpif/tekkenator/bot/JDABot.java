@@ -21,8 +21,8 @@ public class JDABot implements DiscordBot {
 
 	static final Logger logger = Logger.getLogger(JDABot.class);
 
-    private JDA jda;
-    
+	private JDA jda;
+
 	@Autowired
 	DataSource dataSource;
 
@@ -32,7 +32,7 @@ public class JDABot implements DiscordBot {
 	@Autowired
 	private MoveRepository moveRepository;
 
-    public FighterRepository getFighterRepository() {
+	public FighterRepository getFighterRepository() {
 		return fighterRepository;
 	}
 
@@ -47,33 +47,26 @@ public class JDABot implements DiscordBot {
 	public void setMoveRepository(MoveRepository moveRepository) {
 		this.moveRepository = moveRepository;
 	}
-	
+
 	@Autowired
 	private BotListenterInterface myBotListener;
 
 	public boolean init(String token) {
-        try {
-            jda = new JDABuilder(AccountType.BOT)
-                    .setToken(token)
-                    .setGame(Game.playing("Tekken 7"))
-                    .setStatus(OnlineStatus.DO_NOT_DISTURB)
-                    .addEventListener(myBotListener)
-                    .build();
-        } catch (LoginException e) {
-        	logger.warn("Could not init JDA.", e);
-        }
-        
-        return true;
-    }
+		try {
+			jda = new JDABuilder(AccountType.BOT).setToken(token).setGame(Game.playing("Tekken 7"))
+					.setStatus(OnlineStatus.DO_NOT_DISTURB).addEventListener(myBotListener).build();
+		} catch (LoginException e) {
+			logger.warn("Could not init JDA.", e);
+		}
 
-    public void sendMessage(String channel, String message) {
-        try {
-            jda
-                    .getTextChannelById(channel)
-                    .sendMessage(message)
-                    .queue();
-        } catch (Exception e) {
-        	logger.warn("Could not send message.", e);
-        }
-    }
+		return true;
+	}
+
+	public void sendMessage(String channel, String message) {
+		try {
+			jda.getTextChannelById(channel).sendMessage(message).queue();
+		} catch (Exception e) {
+			logger.warn("Could not send message.", e);
+		}
+	}
 }

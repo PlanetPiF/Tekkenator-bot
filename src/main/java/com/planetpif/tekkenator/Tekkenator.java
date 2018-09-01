@@ -2,15 +2,14 @@ package com.planetpif.tekkenator;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.planetpif.tekkenator.bot.BotListenterInterface;
 import com.planetpif.tekkenator.bot.JDABot;
 import com.planetpif.tekkenator.dao.FighterRepository;
 import com.planetpif.tekkenator.dao.MoveRepository;
@@ -25,6 +24,8 @@ import com.planetpif.tekkenator.model.Move;
 @EnableJpaRepositories("com.planetpif.tekkenator")
 public class Tekkenator implements CommandLineRunner {
 
+	static final Logger logger = Logger.getLogger(Tekkenator.class);
+	
 	@Autowired
 	DataSource dataSource;
 
@@ -50,6 +51,7 @@ public class Tekkenator implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		this.createBot();
+		logger.info("End of main reached.");
 	}
 
 	public void createBot() {

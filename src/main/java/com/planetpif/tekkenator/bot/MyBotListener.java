@@ -15,17 +15,11 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 @Service
 public class MyBotListener extends ListenerAdapter implements BotListenterInterface {
 
-	 static final Logger logger = Logger.getLogger(MyBotListener.class);
+	static final Logger logger = Logger.getLogger(MyBotListener.class);
 
 	@Autowired
 	DataSource dataSource;
 
-//	@Autowired
-//	private FighterRepository fighterRepository;
-
-//	@Autowired
-//	private MoveRepository moveRepository;
-	
 	@Autowired
 	private CommandDispatcher commandDispatcher;
 
@@ -34,11 +28,10 @@ public class MyBotListener extends ListenerAdapter implements BotListenterInterf
 		if (event.getAuthor().isBot())
 			return;
 
-		
 		int eventType = commandDispatcher.analyze(event);
-		
+
 		// We don't handle non ! commands
-		if(eventType == -1) {
+		if (eventType == -1) {
 			return;
 		}
 
@@ -49,7 +42,6 @@ public class MyBotListener extends ListenerAdapter implements BotListenterInterf
 
 	@Override
 	public void onReady(ReadyEvent event) {
-
-		//System.out.println("Tekkenator Online!");
+		logger.info("Tekkenator Online!");
 	}
 }
