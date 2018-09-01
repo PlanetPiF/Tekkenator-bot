@@ -31,3 +31,4 @@ target/classes/application.properties
 .classpath
 .classpath
 .project
+logs/*
