@@ -25,10 +25,10 @@ hs_err_pid*
 .classpath
 .project
 .settings/
-target/*
 
 target/classes/application.properties
 .classpath
 .classpath
 .project
 logs/*
+target/**
