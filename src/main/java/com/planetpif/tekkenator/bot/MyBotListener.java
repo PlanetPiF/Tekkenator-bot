@@ -2,16 +2,12 @@ package com.planetpif.tekkenator.bot;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.planetpif.tekkenator.bot.utils.CommandDispatcher;
-import com.planetpif.tekkenator.dao.FighterRepository;
-import com.planetpif.tekkenator.dao.MoveRepository;
-import com.planetpif.tekkenator.model.Move;
 
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -19,14 +15,16 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 @Service
 public class MyBotListener extends ListenerAdapter implements BotListenterInterface {
 
+	 static final Logger logger = Logger.getLogger(MyBotListener.class);
+
 	@Autowired
 	DataSource dataSource;
 
-	@Autowired
-	private FighterRepository fighterRepository;
+//	@Autowired
+//	private FighterRepository fighterRepository;
 
-	@Autowired
-	private MoveRepository moveRepository;
+//	@Autowired
+//	private MoveRepository moveRepository;
 	
 	@Autowired
 	private CommandDispatcher commandDispatcher;
@@ -45,11 +43,13 @@ public class MyBotListener extends ListenerAdapter implements BotListenterInterf
 		}
 
 		commandDispatcher.dispatch(eventType, event);
+		logger.info("Message sent!");
 
 	}
 
 	@Override
 	public void onReady(ReadyEvent event) {
-		System.out.println("Tekkenator Online!");
+
+		//System.out.println("Tekkenator Online!");
 	}
 }

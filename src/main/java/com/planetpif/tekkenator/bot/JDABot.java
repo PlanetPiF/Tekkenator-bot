@@ -1,5 +1,7 @@
 package com.planetpif.tekkenator.bot;
 
+import java.util.logging.Logger;
+
 import javax.security.auth.login.LoginException;
 import javax.sql.DataSource;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.planetpif.tekkenator.dao.FighterRepository;
 import com.planetpif.tekkenator.dao.MoveRepository;
 
+import javassist.bytecode.stackmap.TypeData.ClassName;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -17,6 +20,8 @@ import net.dv8tion.jda.core.entities.Game;
 
 @Service
 public class JDABot implements DiscordBot {
+
+	private static final Logger LOGGER = Logger.getLogger( JDABot.class.getName() );
 
     private JDA jda;
     
@@ -57,21 +62,20 @@ public class JDABot implements DiscordBot {
                     .addEventListener(myBotListener)
                     .build();
         } catch (LoginException e) {
-            e.printStackTrace();
+        	LOGGER.warning(e.getMessage());
         }
         
         return true;
     }
 
-    public void sendMessage(String guild, String channel, String message) {
+    public void sendMessage(String channel, String message) {
         try {
             jda
-                    .getGuildById(guild)
                     .getTextChannelById(channel)
                     .sendMessage(message)
                     .queue();
         } catch (Exception e) {
-            e.printStackTrace();
+        	LOGGER.warning(e.getMessage());
         }
     }
 }
