@@ -23,6 +23,14 @@ public class JDABot implements DiscordBot {
 
 	private JDA jda;
 
+	public JDA getJda() {
+		return jda;
+	}
+
+	public void setJda(JDA jda) {
+		this.jda = jda;
+	}
+
 	@Autowired
 	DataSource dataSource;
 

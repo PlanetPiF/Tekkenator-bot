@@ -1,8 +1,10 @@
 package com.planetpif.tekkenator.bot.utils;
 
 import java.awt.Color;
+import java.util.List;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -13,17 +15,23 @@ import com.planetpif.tekkenator.model.Fighter;
 import com.planetpif.tekkenator.model.Move;
 
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.Emote;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 @Service
 public class CommandDispatcherImpl implements CommandDispatcher {
 
+	static final Logger logger = Logger.getLogger(CommandDispatcherImpl.class);
+	
 	@Autowired
 	private FighterRepository fighterRepository;
 
 	@Autowired
 	private MoveRepository moveRepository;
+	
+
+	//private JDA jda;
 
 	// TODO Use enum ?
 	private static final int UNKNOWN = -1;
@@ -107,7 +115,7 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 		textMessage += event.getAuthor().getAsMention() + "\n";
 		switch (commandType) {
 		case HELP:
-			emb = EmbedTest();
+			emb = embedTest();
 			break;
 		case MOVES:
 			textMessage = getMoves(null);
@@ -205,20 +213,24 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 		eb.setColor(new Color(0xF40C0C));
 		// eb.setColor(new Color(255, 0, 54));
 
-		/*
-		 * Set the text of the Embed: Arg: text as string
-		 */
+		 
+		//Emote emote = event.getJDA().getEmoteById("485509719579033655");
+		List<Emote> emotes = event.getJDA().getEmotesByName("d_", true); 
+		if(!emotes.isEmpty()) {
+			Emote emote = emotes.get(0);
+			logger.info("Emote name: " + emote.getName());
+			logger.info("Emote id: " + emote.getId());
+			String fullEmojiUrl = "<:"+emote.getName() +":" + emote.getId() + ">";
+			logger.info("Combined!!:"+ fullEmojiUrl);
+		}
+		
+		
 		eb.setDescription("*" + description + "*");
-		String extra = ":smiley: + :smiley: ";
-		eb.addField(extra , "" , false);
+		String commandAsEmoji =  "<:d_:485509719579033655>";
+		eb.addField(commandAsEmoji , commandAsEmoji , false);
 		
-
-		//eb.addBlankField(false);
 		
-		/*
-		 * Add fields to embed: 1. Arg: title as string 2. Arg: text as string 3. Arg:
-		 * inline mode true / false
-		 */
+		
 		eb.addField(onBlockTitle, onBlock, true);
 		eb.addField(onHitTitle, onHit, true);
 		eb.addField(onCounterHitTitle, onCounterHit, true);
@@ -230,9 +242,6 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 		//TODO get field titles from .properties file
 
 
-		/*
-		 * Add spacer like field Arg: inline mode true / false
-		 */
 		eb.addBlankField(false);
 
 		/*
@@ -268,7 +277,7 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 
 	}
 	
-	public MessageEmbed EmbedTest() {
+	public MessageEmbed embedTest() {
 		
 		// Create the EmbedBuilder instance
 		EmbedBuilder eb = new EmbedBuilder();
@@ -382,5 +391,11 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 	public void setEvent(MessageReceivedEvent event) {
 		this.event = event;
 	}
+/*	
+	public boolean verifyEmoji(String emoji) {
+
+		Emote emote = jda.getEmoteById("485509719579033655");
+		return true;
+	}*/
 
 }
