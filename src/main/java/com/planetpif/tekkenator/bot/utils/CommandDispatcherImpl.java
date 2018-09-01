@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.planetpif.tekkenator.dao.FighterRepository;
@@ -32,7 +33,29 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 	private static final int HI = 3;
 	private static final int LOVE = 4;
 	private static final int ROLL = 5;
-
+	private static final int EWGF = 6;
+	
+	private static final String SAFE_ICON = "https://cdn1.iconfinder.com/data/icons/color-bold-style/21/30-512.png";
+	private static final String UNSAFE_ICON = "https://st.depositphotos.com/1637332/2711/v/950/depositphotos_27116087-stock-illustration-bouton-internet-attention-exclamation-danger.jpg";
+	
+	@Value("${property.title}")
+	private String propertyTitle;
+	
+	@Value("${onBlock.title}")
+	private String onBlockTitle;
+	
+	@Value("${onHit.title}")
+	private String onHitTitle;
+	
+	@Value("${onCounterHit.title}")
+	private String onCounterHitTitle;
+	
+	@Value("${damage.title}")
+	private String damageTitle;
+	
+	@Value("${startup.title}")
+	private String startupTitle;
+	
 	// TODO do I really need this ?
 	private MessageReceivedEvent event;
 
@@ -62,6 +85,9 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 			break;
 		case "!roll":
 			commandType = ROLL;
+			break;
+		case "!ewgf":
+			commandType = EWGF;
 			break;
 		default:
 			commandType = UNKNOWN;
@@ -93,16 +119,14 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 			textMessage = "Hello! :)";
 			break;
 		case ROLL:
-			textMessage = Roll(null);
+			textMessage = roll(null);
 			break;
+		case EWGF:
+			emb = getEmbededMove(null); //TODO implement move recognition
 		default:
 			break;
 		}
 		
-		
-
-		System.out.println("How to @MENTION people: ");
-		System.out.println(event.getAuthor().getAsMention());
 
 		textMessage += "\n" + event.getAuthor().getAsMention() + "\n";
 
@@ -115,9 +139,134 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 			event.getChannel().sendMessage(textMessage).queue();
 		}
 		
+	}
+
+	public Move createMockEWGF() {
+		Fighter fighter = new Fighter();
+		fighter.setName("Devil Jin");
+		fighter.setIconUrl("http://tekken7combo.kagewebsite.com/tpl/img/char/devil-jin.jpg");
+		fighter.setTier("S+");
+
+		Move ewgf = new Move();
+		ewgf.setName("EWGF");
+		ewgf.setGifUrl("https://i.imgur.com/tn3QiLy.gif");
+		ewgf.setCommand("f, n, d, d/f+2");
+		ewgf.setHitLevel("h");
+		ewgf.setDamage("23");
+		ewgf.setStartUpFrame("11~15 (14~)");
+		ewgf.setBlockFrame("=+5~+6");
+		ewgf.setHitFrame("Launch (JG?)");
+		ewgf.setCounterHitFrame("Launch (JG?)");
+		ewgf.setNotes("DAH!");
+		ewgf.setSafeOnBlock(Boolean.TRUE);
+		ewgf.setFighter(fighter);
+
+		return ewgf;
+	}
+
+	public MessageEmbed getEmbededMove(Move move) {
+		move = createMockEWGF();
+
+		String commandTitle = move.getCommand();
+		String description = move.getName();
+		
+
+		
+		String onBlock = move.getBlockFrame();
+		
+		
+		String onHit = move.getHitFrame();
+		
+		
+		String onCounterHit = move.getCounterHitFrame();
+		
+		
+		String property = move.getHitLevel();
+		
+		
+		String damage = move.getDamage();
+		
+		
+		String startup = move.getStartUpFrame();
+		
+		// Create the EmbedBuilder instance
+		EmbedBuilder eb = new EmbedBuilder();
+
+		/*
+		 * Set the title: 1. Arg: title as string 2. Arg: URL as string or could also be
+		 * null
+		 */
+		eb.setTitle(commandTitle , "https://google.com");
+
+		/*
+		 * Set the color
+		 */
+		// eb = eb.setColor(Color.red);
+		eb.setColor(new Color(0xF40C0C));
+		// eb.setColor(new Color(255, 0, 54));
+
+		/*
+		 * Set the text of the Embed: Arg: text as string
+		 */
+		eb.setDescription("*" + description + "*");
+		String extra = ":smiley: + :smiley: ";
+		eb.addField(extra , "" , false);
+		
+
+		//eb.addBlankField(false);
+		
+		/*
+		 * Add fields to embed: 1. Arg: title as string 2. Arg: text as string 3. Arg:
+		 * inline mode true / false
+		 */
+		eb.addField(onBlockTitle, onBlock, true);
+		eb.addField(onHitTitle, onHit, true);
+		eb.addField(onCounterHitTitle, onCounterHit, true);
+		
+		eb.addField(propertyTitle, property, true);
+		eb.addField(damageTitle, damage, true);
+		eb.addField(startupTitle, startup, true);
+		
+		//TODO get field titles from .properties file
+
+
+		/*
+		 * Add spacer like field Arg: inline mode true / false
+		 */
+		eb.addBlankField(false);
+
+		/*
+		 * Add embed author: 1. Arg: name as string 2. Arg: url as string (can be null)
+		 * 3. Arg: icon url as string (can be null)
+		 */
+		eb.setAuthor(move.getFighter().getName(), null, move.getFighter().getIconUrl()); 
+
+		
+		String footer = move.getNotes();
+		String footerIconUrl = null;
+		
+		/*
+		 * Set footer: 1. Arg: text as string 2. icon url as string (can be null)
+		 */
+		eb.setFooter(footer, footerIconUrl);
+
+		/*
+		 * Set image: Arg: image url as string
+		 */
+		eb.setImage(move.getGifUrl());
+
+		/*
+		 * Set thumbnail image: Arg: image url as string
+		 */
+		String thumbnail = UNSAFE_ICON;
+		if(move.getSafeOnBlock()) {
+			thumbnail = SAFE_ICON;
+		}
+		eb.setThumbnail(thumbnail);
+
+		return eb.build();
 
 	}
-	
 	
 	public MessageEmbed EmbedTest() {
 		
@@ -134,15 +283,15 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 		/*
 		    Set the color
 		 */
-		eb.setColor(Color.red);
+	//	eb = eb.setColor(Color.red);
 		eb.setColor(new Color(0xF40C0C));
-		eb.setColor(new Color(255, 0, 54));
+	//	eb.setColor(new Color(255, 0, 54));
 
 		/*
 		    Set the text of the Embed:
 		    Arg: text as string
 		 */
-		eb.setDescription("Description");
+		eb.setDescription("*Description*");
 
 		/*
 		    Add fields to embed:
@@ -164,7 +313,7 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 		    2. Arg: url as string (can be null)
 		    3. Arg: icon url as string (can be null)
 		 */
-		eb.setAuthor("name", null, "https://github.com/zekroTJA/DiscordBot/blob/master/.websrc/zekroBot_Logo_-_round_small.png");
+		eb.setAuthor("name", null, "https://i.makeagif.com/media/7-19-2015/6UTBzE.gif");   // STEVE GIF
 
 		/*
 		    Set footer:
@@ -177,19 +326,19 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 		    Set image:
 		    Arg: image url as string
 		 */
-		eb.setImage("https://github.com/zekroTJA/DiscordBot/blob/master/.websrc/logo%20-%20title.png");
+		eb.setImage("https://im3.ezgif.com/tmp/ezgif-3-1382a2d2f0.gif");
 
 		/*
 		    Set thumbnail image:
 		    Arg: image url as string
 		 */
-		eb.setThumbnail("https://github.com/zekroTJA/DiscordBot/blob/master/.websrc/logo%20-%20title.png");
+		eb.setThumbnail("https://vignette.wikia.nocookie.net/tekken/images/9/9f/KazuyaEWGF.gif/revision/latest?cb=20150107125830&path-prefix=en");
 		
 		
 		return eb.build();
 	}
 
-	public String Roll(Integer maxRoll) {
+	public String roll(Integer maxRoll) {
 
 		int max = 100;
 		if (maxRoll != null) {
@@ -197,7 +346,7 @@ public class CommandDispatcherImpl implements CommandDispatcher {
 		}
 
 		Random rand = new Random();
-		int roll = rand.nextInt(max) + 1; // This results in 1 - max (instead of 0 - max)
+		int roll = rand.nextInt(max +1); // This results in 0 - max 
 		return "Your rolled (0 - " + max + "):  " + roll;
 
 	}

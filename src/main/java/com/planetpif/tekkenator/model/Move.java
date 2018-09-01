@@ -33,7 +33,10 @@ public class Move {
 	private String notes;
 	private String alias;
 	private Boolean safeOnBlock; // TODO boolean naming conventions?
+	private String gifUrl;
 	
+
+
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "fighter_id", nullable = false)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
@@ -153,6 +156,13 @@ public class Move {
 	public void setSafeOnBlock(Boolean safeOnBlock) {
 		this.safeOnBlock = safeOnBlock;
 	}
+	
+	public String getGifUrl() {
+		return gifUrl;
+	}
 
+	public void setGifUrl(String gifUrl) {
+		this.gifUrl = gifUrl;
+	}
 
 }

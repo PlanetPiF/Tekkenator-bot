@@ -13,7 +13,8 @@ public class Fighter {
 
 	private String name;
 	private String tier;
-	
+	private String iconUrl;
+
 	public String getName() {
 		return name;
 	}
@@ -38,9 +39,17 @@ public class Fighter {
 		this.id = id;
 	}
 
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name = "id")
 	private long id;
-	
+
 }
