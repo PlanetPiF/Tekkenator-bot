@@ -39,33 +39,12 @@ public class MyBotListener extends ListenerAdapter implements BotListenterInterf
 		
 		int eventType = commandDispatcher.analyze(event);
 		
-		if(eventType != -1) {
-			commandDispatcher.dispatch(eventType, event);
-		}
-		
-		/*Message message = event.getMessage();
-		String chatCommand = message.getContentRaw();
-		if (chatCommand.equals("!ping")) {
-			MessageChannel channel = event.getChannel();
-			channel.sendMessage("Pong!").queue();
+		// We don't handle non ! commands
+		if(eventType == -1) {
+			return;
 		}
 
-		if (chatCommand.equals("!hi")) {
-			MessageChannel channel = event.getChannel();
-			channel.sendMessage("Hello!").queue();
-		}
-
-		if (chatCommand.equals("!moves")) {
-			String response = "";
-			Iterable<Move> movesList = moveRepository.findAll();
-			System.out.println("Total Moves: " + moveRepository.count());
-			response += "Total Moves Found: " + moveRepository.count() + "\n";
-			for (Move move : movesList) {
-				response += (move.getName() + " belongs to " + move.getFighter().getName() + ". \n");
-			}
-
-			event.getChannel().sendMessage(response).queue();
-		}*/
+		commandDispatcher.dispatch(eventType, event);
 
 	}
 
