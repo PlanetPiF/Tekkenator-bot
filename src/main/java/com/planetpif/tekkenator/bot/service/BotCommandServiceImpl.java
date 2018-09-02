@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.planetpif.tekkenator.dao.BotCommandRepository;
+import com.planetpif.tekkenator.dao.repository.BotCommandRepository;
 import com.planetpif.tekkenator.model.BotCommand;
 import com.planetpif.tekkenator.model.CommandType;
 

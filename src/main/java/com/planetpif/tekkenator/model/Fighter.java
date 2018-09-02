@@ -7,13 +7,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.internal.NotNull;
+
 @Entity
 @Table(name = "FIGHTERS")
 public class Fighter {
 
+	@NotNull
+	@Column(name = "name" , unique = true)
 	private String name;
+	
 	private String tier;
 	private String iconUrl;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
 
 	public String getName() {
 		return name;
@@ -46,10 +56,5 @@ public class Fighter {
 	public void setIconUrl(String iconUrl) {
 		this.iconUrl = iconUrl;
 	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private long id;
 
 }

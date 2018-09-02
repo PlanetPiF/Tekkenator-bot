@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.planetpif.tekkenator.dao.FighterRepository;
-import com.planetpif.tekkenator.dao.MoveRepository;
+import com.planetpif.tekkenator.dao.repository.FighterRepository;
+import com.planetpif.tekkenator.dao.repository.MoveRepository;
 import com.planetpif.tekkenator.model.Fighter;
 import com.planetpif.tekkenator.model.Move;
 

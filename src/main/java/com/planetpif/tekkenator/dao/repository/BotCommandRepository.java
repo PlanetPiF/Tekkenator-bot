@@ -1,4 +1,4 @@
-package com.planetpif.tekkenator.dao;
+package com.planetpif.tekkenator.dao.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

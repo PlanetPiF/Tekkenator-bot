@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.planetpif.tekkenator.bot.service.BotCommandService;
-import com.planetpif.tekkenator.dao.FighterRepository;
-import com.planetpif.tekkenator.dao.MoveRepository;
+import com.planetpif.tekkenator.dao.repository.FighterRepository;
+import com.planetpif.tekkenator.dao.repository.MoveRepository;
 import com.planetpif.tekkenator.model.Fighter;
 import com.planetpif.tekkenator.model.Move;
 

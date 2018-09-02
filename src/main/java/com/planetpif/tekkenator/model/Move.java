@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -23,6 +24,8 @@ public class Move {
 	private long id;
 	
 	private String name;
+	private String alias;
+	
 	private String command;
 	private String hitLevel;
 	private String damage;
@@ -31,7 +34,7 @@ public class Move {
 	private String hitFrame;
 	private String counterHitFrame;
 	private String notes;
-	private String alias;
+
 	private Boolean safeOnBlock; // TODO boolean naming conventions?
 	private String gifUrl;
 	

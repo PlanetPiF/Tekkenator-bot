@@ -7,8 +7,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.planetpif.tekkenator.dao.FighterRepository;
-import com.planetpif.tekkenator.dao.MoveRepository;
+import com.planetpif.tekkenator.dao.repository.FighterRepository;
+import com.planetpif.tekkenator.dao.repository.MoveRepository;
 
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
