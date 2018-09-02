@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -35,10 +35,12 @@ public class Move {
 	private String counterHitFrame;
 	private String notes;
 
-	private Boolean safeOnBlock; // TODO boolean naming conventions?
+	@ColumnDefault("false")
+	private boolean safeOnBlock;
 	private String gifUrl;
-	
 
+	@ColumnDefault("true")
+	private boolean listed;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "fighter_id", nullable = false)
@@ -67,7 +69,6 @@ public class Move {
 		details += "Name: " + getName() + "\n";
 		details += "Command: " + getCommand() + "\n";
 		details += "Hit: " + getHitFrame() + "\n";
-		details += "Safe on Block: " + getSafeOnBlock() + "\n";
 
 		return details;
 	}
@@ -151,14 +152,6 @@ public class Move {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-
-	public Boolean getSafeOnBlock() {
-		return safeOnBlock;
-	}
-
-	public void setSafeOnBlock(Boolean safeOnBlock) {
-		this.safeOnBlock = safeOnBlock;
-	}
 	
 	public String getGifUrl() {
 		return gifUrl;
@@ -166,6 +159,22 @@ public class Move {
 
 	public void setGifUrl(String gifUrl) {
 		this.gifUrl = gifUrl;
+	}
+
+	public boolean isListed() {
+		return listed;
+	}
+
+	public void setListed(boolean listed) {
+		this.listed = listed;
+	}
+
+	public boolean isSafeOnBlock() {
+		return safeOnBlock;
+	}
+
+	public void setSafeOnBlock(boolean safeOnBlock) {
+		this.safeOnBlock = safeOnBlock;
 	}
 
 }

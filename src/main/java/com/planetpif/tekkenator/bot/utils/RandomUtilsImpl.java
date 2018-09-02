@@ -13,7 +13,7 @@ import com.planetpif.tekkenator.model.Move;
 @Component
 public class RandomUtilsImpl implements RandomUtils {
 	
-	static final Logger logger = Logger.getLogger(RandomUtilsImpl.class);
+	static final Logger log = Logger.getLogger(RandomUtilsImpl.class);
 	
 	@Autowired
 	private FighterRepository fighterRepository;
@@ -52,9 +52,9 @@ public class RandomUtilsImpl implements RandomUtils {
 		moveRepository.save(hellsweep);
 
 		Iterable<Move> movesList = moveRepository.findAll();
-		logger.info("Total Moves: " + moveRepository.count());
+		log.info("Total Moves: " + moveRepository.count());
 		for (Move move : movesList) {
-			logger.info(move.getName() + " belongs to " + move.getFighter().getName());
+			log.info(move.getName() + " belongs to " + move.getFighter().getName());
 		}
 
 		if (deleteAfter) {

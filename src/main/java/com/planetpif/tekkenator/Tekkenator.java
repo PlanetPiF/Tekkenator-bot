@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.planetpif.tekkenator.bot.DiscordJdaBot;
 import com.planetpif.tekkenator.bot.service.MoveService;
+import com.planetpif.tekkenator.bot.utils.MoveTranslator;
 import com.planetpif.tekkenator.bot.utils.RandomUtils;
 import com.planetpif.tekkenator.dao.repository.FighterRepository;
 import com.planetpif.tekkenator.dao.repository.MoveRepository;
@@ -29,7 +30,7 @@ import com.planetpif.tekkenator.model.Move;
 @EnableJpaRepositories("com.planetpif.tekkenator")
 public class Tekkenator implements CommandLineRunner {
 
-	static final Logger logger = Logger.getLogger(Tekkenator.class);
+	static final Logger log = Logger.getLogger(Tekkenator.class);
 	
 	@Autowired
 	private DataSource dataSource;
@@ -48,6 +49,9 @@ public class Tekkenator implements CommandLineRunner {
 	
 	@Autowired
 	private MoveService moveService;
+	
+	@Autowired
+	private MoveTranslator moveTranslator;
 
 	@Value("${discord.token}")
 	private String token;
@@ -64,20 +68,25 @@ public class Tekkenator implements CommandLineRunner {
 	
 	public void executeTestStuff() {
 		
-		Fighter dj = fighterRepository.findById(147L).get();
+		
+		moveTranslator.translate("f, n, d, D/F+2");
+		
+		moveTranslator.translate("cd+4");
+		
+		/*Fighter dj = fighterRepository.findById(147L).get();
 		
 		List<Move> moves = moveService.getMovesByFighter(dj);
 		for(Move move: moves) {
-			logger.info("Move found! - " + move.getName());
+			log.info("Move found! - " + move.getName());
 		}
 		
 		String nameOrAlias = "hs";
 		//Move hs = moveRepository.findMoveByNameOrAliasContaining(nameOrAlias, nameOrAlias);
 		
 		Move hs = moveRepository.findByNameForFighter(nameOrAlias, dj);
-		logger.info("DJ's low is called: " + hs.getName() + " Alias: " + hs.getAlias());
+		log.info("DJ's low is called: " + hs.getName() + " Alias: " + hs.getAlias());
 		
-		
+		*/
 		
 		
 		utils.addMockCommands(Boolean.FALSE);

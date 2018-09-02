@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.planetpif.tekkenator.bot.utils.MoveTranslator;
 import com.planetpif.tekkenator.dao.repository.FighterRepository;
 import com.planetpif.tekkenator.dao.repository.MoveRepository;
 import com.planetpif.tekkenator.model.Fighter;
@@ -22,13 +23,16 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 @Service
 public class DispatcherImpl implements Dispatcher {
 
-	static final Logger logger = Logger.getLogger(DispatcherImpl.class);
+	static final Logger log = Logger.getLogger(DispatcherImpl.class);
 	
 	@Autowired
 	private FighterRepository fighterRepository;
 
 	@Autowired
 	private MoveRepository moveRepository;
+	
+	@Autowired
+	private MoveTranslator moveTranslator;
 	
 
 	//private JDA jda;
@@ -218,10 +222,10 @@ public class DispatcherImpl implements Dispatcher {
 		List<Emote> emotes = event.getJDA().getEmotesByName("d_", true); 
 		if(!emotes.isEmpty()) {
 			Emote emote = emotes.get(0);
-			logger.info("Emote name: " + emote.getName());
-			logger.info("Emote id: " + emote.getId());
+			log.info("Emote name: " + emote.getName());
+			log.info("Emote id: " + emote.getId());
 			String fullEmojiUrl = "<:"+emote.getName() +":" + emote.getId() + ">";
-			logger.info("Combined!!:"+ fullEmojiUrl);
+			log.info("Combined!!:"+ fullEmojiUrl);
 		}
 		
 		
@@ -268,7 +272,7 @@ public class DispatcherImpl implements Dispatcher {
 		 * Set thumbnail image: Arg: image url as string
 		 */
 		String thumbnail = UNSAFE_ICON;
-		if(move.getSafeOnBlock()) {
+		if(move.isSafeOnBlock()) {
 			thumbnail = SAFE_ICON;
 		}
 		eb.setThumbnail(thumbnail);

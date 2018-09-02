@@ -17,7 +17,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 @Service
 public class MyBotListener extends ListenerAdapter implements BotListenterInterface {
 
-	static final Logger logger = Logger.getLogger(MyBotListener.class);
+	static final Logger log = Logger.getLogger(MyBotListener.class);
 
 	@Autowired
 	DataSource dataSource;
@@ -41,12 +41,12 @@ public class MyBotListener extends ListenerAdapter implements BotListenterInterf
 		}
 
 		commandDispatcher.dispatch(eventType, event);
-		logger.info("Message sent!");
+		log.info("Message sent!");
 
 	}
 
 	@Override
 	public void onReady(ReadyEvent event) {
-		logger.info("Tekkenator Online!");
+		log.info("Tekkenator Online!");
 	}
 }

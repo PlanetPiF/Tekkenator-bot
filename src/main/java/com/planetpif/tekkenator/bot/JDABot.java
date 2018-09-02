@@ -19,7 +19,7 @@ import net.dv8tion.jda.core.entities.Game;
 @Service
 public class JDABot implements DiscordJdaBot {
 
-	static final Logger logger = Logger.getLogger(JDABot.class);
+	static final Logger log = Logger.getLogger(JDABot.class);
 
 	private JDA jda;
 
@@ -65,7 +65,7 @@ public class JDABot implements DiscordJdaBot {
 			jda = new JDABuilder(AccountType.BOT).setToken(token).setGame(Game.playing("Tekken 7"))
 					.setStatus(OnlineStatus.DO_NOT_DISTURB).addEventListener(myBotListener).build();
 		} catch (LoginException e) {
-			logger.warn("Could not init JDA.", e);
+			log.warn("Could not init JDA.", e);
 		}
 
 		return true;
@@ -75,7 +75,7 @@ public class JDABot implements DiscordJdaBot {
 		try {
 			jda.getTextChannelById(channel).sendMessage(message).queue();
 		} catch (Exception e) {
-			logger.warn("Could not send message.", e);
+			log.warn("Could not send message.", e);
 		}
 	}
 }

@@ -15,7 +15,7 @@ import com.planetpif.tekkenator.model.CommandType;
 @Service
 public class BotCommandServiceImpl implements BotCommandService {
 
-	static final Logger logger = Logger.getLogger(BotCommandServiceImpl.class);
+	static final Logger log = Logger.getLogger(BotCommandServiceImpl.class);
 
 	@Autowired
 	private BotCommandRepository botCommandRepository;
@@ -23,7 +23,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 	@Override
 	public void addNewCommand(BotCommand botCommand) {
 		botCommandRepository.save(botCommand);
-		logger.info("Added new command: "+ botCommand.getName());
+		log.info("Added new command: "+ botCommand.getName());
 	}
 
 	@Override

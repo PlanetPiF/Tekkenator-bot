@@ -13,7 +13,7 @@ import com.planetpif.tekkenator.model.Move;
 @Service
 public class MoveServiceImpl implements MoveService{
 	
-	static final Logger logger = Logger.getLogger(MoveServiceImpl.class);
+	static final Logger log = Logger.getLogger(MoveServiceImpl.class);
 
 	@Autowired
 	private MoveRepository moveRepository;

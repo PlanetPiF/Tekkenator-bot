@@ -10,7 +10,7 @@ import net.dv8tion.jda.core.entities.MessageEmbed;
 @Service
 public class EmbedderImpl implements Embedder {
 
-	static final Logger logger = Logger.getLogger(EmbedderImpl.class);
+	static final Logger log = Logger.getLogger(EmbedderImpl.class);
 	
 	@Override
 	public String convertEmoji(String emojiId) {

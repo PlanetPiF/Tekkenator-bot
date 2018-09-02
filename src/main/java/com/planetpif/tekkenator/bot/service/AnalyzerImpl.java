@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class AnalyzerImpl implements Analyzer {
 
-	static final Logger logger = Logger.getLogger(AnalyzerImpl.class);
+	static final Logger log = Logger.getLogger(AnalyzerImpl.class);
 	
 }
