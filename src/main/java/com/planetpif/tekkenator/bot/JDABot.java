@@ -17,7 +17,7 @@ import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
 
 @Service
-public class JDABot implements DiscordBot {
+public class JDABot implements DiscordJdaBot {
 
 	static final Logger logger = Logger.getLogger(JDABot.class);
 
@@ -59,6 +59,7 @@ public class JDABot implements DiscordBot {
 	@Autowired
 	private BotListenterInterface myBotListener;
 
+	@Override
 	public boolean init(String token) {
 		try {
 			jda = new JDABuilder(AccountType.BOT).setToken(token).setGame(Game.playing("Tekken 7"))

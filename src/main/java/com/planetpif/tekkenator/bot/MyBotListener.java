@@ -6,7 +6,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.planetpif.tekkenator.bot.utils.CommandDispatcher;
+import com.planetpif.tekkenator.bot.service.Analyzer;
+import com.planetpif.tekkenator.bot.service.Dispatcher;
+import com.planetpif.tekkenator.model.CommandType;
 
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -19,9 +21,12 @@ public class MyBotListener extends ListenerAdapter implements BotListenterInterf
 
 	@Autowired
 	DataSource dataSource;
+	
+	@Autowired
+	private Analyzer analyzer;
 
 	@Autowired
-	private CommandDispatcher commandDispatcher;
+	private Dispatcher commandDispatcher;
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {

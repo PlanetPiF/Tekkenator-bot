@@ -32,3 +32,4 @@ target/classes/application.properties
 .project
 logs/*
 target/**
+target/classes/META-INF/maven/com.planetpif.tekkenator/tekkenator-bot/pom.properties

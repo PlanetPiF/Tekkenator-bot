@@ -1,4 +1,4 @@
-package com.planetpif.tekkenator.bot.utils;
+package com.planetpif.tekkenator.bot.service;
 
 import java.awt.Color;
 import java.util.List;
@@ -20,9 +20,9 @@ import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 @Service
-public class CommandDispatcherImpl implements CommandDispatcher {
+public class DispatcherImpl implements Dispatcher {
 
-	static final Logger logger = Logger.getLogger(CommandDispatcherImpl.class);
+	static final Logger logger = Logger.getLogger(DispatcherImpl.class);
 	
 	@Autowired
 	private FighterRepository fighterRepository;

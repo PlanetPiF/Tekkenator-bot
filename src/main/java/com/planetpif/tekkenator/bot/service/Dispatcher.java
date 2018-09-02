@@ -1,8 +1,8 @@
-package com.planetpif.tekkenator.bot.utils;
+package com.planetpif.tekkenator.bot.service;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public interface CommandDispatcher {
+public interface Dispatcher {
 	
 	public int analyze(MessageReceivedEvent messageReceivedEvent);
 	
