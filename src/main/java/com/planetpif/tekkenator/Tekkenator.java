@@ -67,9 +67,11 @@ public class Tekkenator implements CommandLineRunner {
 			logger.info("Move found! - " + move.getName());
 		}
 		
-		Move hs = moveRepository.findMoveByAliasContaining("hs");
-		logger.info("DJ's low is called: " + hs.getName() + " Alias: " + hs.getAlias());
+		String nameOrAlias = "hs";
+		//Move hs = moveRepository.findMoveByNameOrAliasContaining(nameOrAlias, nameOrAlias);
 		
+		Move hs = moveRepository.findByNameForFighter(nameOrAlias, dj);
+		logger.info("DJ's low is called: " + hs.getName() + " Alias: " + hs.getAlias());
 		utils.addMockCommands(Boolean.FALSE);
 	}
 
