@@ -19,6 +19,11 @@ import com.planetpif.tekkenator.model.Move;
 @Repository
 public interface MoveRepository extends CrudRepository<Move, Long>{
 
+	/**
+	 * Lists all moves for specific {@link Fighter}.
+	 * @param fighter
+	 * @return
+	 */
     List<Move> getMovesByFighter(Fighter fighter);
     
   //TODO handle multiple moves with same name ?

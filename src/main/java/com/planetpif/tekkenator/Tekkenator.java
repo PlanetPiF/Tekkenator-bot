@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.planetpif.tekkenator.bot.DiscordJdaBot;
+import com.planetpif.tekkenator.bot.service.MoveService;
 import com.planetpif.tekkenator.bot.utils.RandomUtils;
 import com.planetpif.tekkenator.dao.repository.FighterRepository;
 import com.planetpif.tekkenator.dao.repository.MoveRepository;
@@ -44,6 +45,9 @@ public class Tekkenator implements CommandLineRunner {
 	
 	@Autowired
 	private FighterRepository fighterRepository;
+	
+	@Autowired
+	private MoveService moveService;
 
 	@Value("${discord.token}")
 	private String token;
@@ -62,7 +66,7 @@ public class Tekkenator implements CommandLineRunner {
 		
 		Fighter dj = fighterRepository.findById(147L).get();
 		
-		List<Move> moves = moveRepository.getMovesByFighter(dj);
+		List<Move> moves = moveService.getMovesByFighter(dj);
 		for(Move move: moves) {
 			logger.info("Move found! - " + move.getName());
 		}
@@ -72,6 +76,10 @@ public class Tekkenator implements CommandLineRunner {
 		
 		Move hs = moveRepository.findByNameForFighter(nameOrAlias, dj);
 		logger.info("DJ's low is called: " + hs.getName() + " Alias: " + hs.getAlias());
+		
+		
+		
+		
 		utils.addMockCommands(Boolean.FALSE);
 	}
 
