@@ -46,6 +46,9 @@ public class MoveTranslatorImpl implements MoveTranslator {
 		// Remove +
 		command = command.replace("+", "");
 		
+		// Remove > (delay / hitconfirmable character notation)
+		command = command.replace(">", "");
+		
 		// wr, ss, ws, fc 
 		
 		
