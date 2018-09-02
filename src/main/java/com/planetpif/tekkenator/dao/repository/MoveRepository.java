@@ -23,6 +23,8 @@ public interface MoveRepository extends CrudRepository<Move, Long>{
     
     Move findMoveByAlias(String alias);
     
+    Move findMoveByAliasContaining(String alias);
+    
     Move findMoveByName(String name);
     
    // Move findMoveByNameOrAlias(String Name);

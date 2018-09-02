@@ -54,7 +54,7 @@ public class Tekkenator implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-	//	this.executeTestStuff();
+		this.executeTestStuff();
 		this.createBot();
 	}
 	
@@ -67,7 +67,7 @@ public class Tekkenator implements CommandLineRunner {
 			logger.info("Move found! - " + move.getName());
 		}
 		
-		Move hs = moveRepository.findMoveByAlias("hs");
+		Move hs = moveRepository.findMoveByAliasContaining("hs");
 		logger.info("DJ's low is called: " + hs.getName() + " Alias: " + hs.getAlias());
 		
 		utils.addMockCommands(Boolean.FALSE);
