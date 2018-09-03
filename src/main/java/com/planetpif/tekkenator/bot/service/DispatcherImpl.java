@@ -231,7 +231,7 @@ public class DispatcherImpl implements Dispatcher {
 		
 		eb.setDescription("*" + description + "*");
 		String commandAsEmoji =  "<:d_:485509719579033655>";
-		commandAsEmoji = moveTranslator.translateToEmoji(move);
+		commandAsEmoji = moveTranslator.translateToEmoji(move, event.getGuild().getEmotes());
 		eb.addField(commandAsEmoji , "" , false);
 		
 		

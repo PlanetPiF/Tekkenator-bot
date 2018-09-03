@@ -1,11 +1,14 @@
 package com.planetpif.tekkenator.bot.utils;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.planetpif.tekkenator.model.Move;
+
+import net.dv8tion.jda.core.entities.Emote;
 
 @Service
 public class MoveTranslatorImpl implements MoveTranslator {
@@ -64,8 +67,8 @@ public class MoveTranslatorImpl implements MoveTranslator {
 	}
 
 	@Override
-	public String translateToEmoji(Move move) {
-		return this.translateToEmoji(move.getCommand());
+	public String translateToEmoji(Move move, List<Emote> emotes) {
+		return this.translateToEmoji(move.getCommand(), emotes);
 	}
 	
 	// EMOJI PLACEHOLDERS
@@ -100,7 +103,7 @@ public class MoveTranslatorImpl implements MoveTranslator {
 	
 
 	@Override
-	public String translateToEmoji(String command) {
+	public String translateToEmoji(String command, List<Emote> emotes) {
 		
 		log.info("----- Translating to Emoji: " + command);
 		

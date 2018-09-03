@@ -73,7 +73,7 @@ public class Tekkenator implements CommandLineRunner {
 		
 		moveTranslator.translate("cd+4");
 		
-		moveTranslator.translateToEmoji("f, n, d, D/F+2");
+		//moveTranslator.translateToEmoji("f, n, d, D/F+2");  //TODO make event / guild / emojis accessible everywhere!
 		
 		/*Fighter dj = fighterRepository.findById(147L).get();
 		
