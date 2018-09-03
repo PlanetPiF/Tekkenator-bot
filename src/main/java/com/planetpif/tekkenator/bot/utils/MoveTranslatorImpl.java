@@ -63,4 +63,87 @@ public class MoveTranslatorImpl implements MoveTranslator {
 		return command;
 	}
 
+	@Override
+	public String translateToEmoji(Move move) {
+		return this.translateToEmoji(move.getCommand());
+	}
+	
+	// EMOJI PLACEHOLDERS
+	private static final String DOWN_EMOJI = "[DOWN]";
+	private static final String FORWARD_EMOJI = "[FOWARD]";
+	private static final String UP_EMOJI = "[UP]";
+	private static final String BACK_EMOJI = "[BACK]";
+	
+	private static final String DOWN_FORWARD_EMOJI = "[DOWN_FORWARD]";
+	private static final String DOWN_BACK_EMOJI = "[DOWN_BACK]";
+
+	private static final String UP_FORWARD = "[UP_FORWARD]";
+	private static final String UP_BACK = "[UP_BACK]";
+	
+	private static final String NEUTRAL_EMOJI = "[NEUTRAL]";
+	
+	private static final String ONE_BTN_EMOJI = "[1]";
+	private static final String TWO_BTN_EMOJI = "[2]";
+	private static final String THREE_BTN_EMOJI = "[3]";
+	private static final String FOUR_BTN_EMOJI = "[4]";
+	
+	// combinations
+	private static final String ONE_TWO_BTN_EMOJI = "[1+2]";
+	private static final String ONE_THREE_BTN_EMOJI = "[1+3]";
+	private static final String ONE_FOUR_BTN_EMOJI = "[1+4]";
+	
+	private static final String TWO_THREE_BTN_EMOJI = "[2+3]";  // exists?
+	private static final String TWO_FOUR_BTN_EMOJI = "[2+4]";
+
+	private static final String THREE_FOUR_BTN_EMOJI = "[3+4]";
+	
+	
+
+	@Override
+	public String translateToEmoji(String command) {
+		
+		log.info("----- Translating to Emoji: " + command);
+		
+		command = command.toLowerCase();
+		// remove ","
+	//	command = command.replace(",", "");
+		// Diagonals first
+		command = command.replace("d/f", DOWN_FORWARD_EMOJI);
+		command = command.replace("d/b", DOWN_BACK_EMOJI);
+		command = command.replace("u/f", UP_FORWARD);
+		command = command.replace("u/b", UP_BACK);
+		// Directions second
+		command = command.replace("d", DOWN_EMOJI);
+		command = command.replace("f", FORWARD_EMOJI);
+		command = command.replace("u", UP_EMOJI);
+		command = command.replace("b", BACK_EMOJI);
+		command = command.replace("n", NEUTRAL_EMOJI);
+		
+		// Combinations
+		command = command.replace("1+2", ONE_TWO_BTN_EMOJI);
+		command = command.replace("1+3", ONE_THREE_BTN_EMOJI);
+		command = command.replace("1+4", ONE_FOUR_BTN_EMOJI);
+		
+		command = command.replace("2+3", TWO_THREE_BTN_EMOJI);
+		command = command.replace("2+4", TWO_FOUR_BTN_EMOJI);
+		
+		command = command.replace("3+4", THREE_FOUR_BTN_EMOJI);
+		
+		// Buttons (punches 1,2 and kicks 3,4)
+		command = command.replace("1", ONE_BTN_EMOJI);
+		command = command.replace("2", TWO_BTN_EMOJI);
+		command = command.replace("3", THREE_BTN_EMOJI);
+		command = command.replace("4", FOUR_BTN_EMOJI);
+		
+
+
+		
+
+		log.info("---- Translated to emoji: ");
+		log.info(command);
+		
+		// TODO Auto-generated method stub
+		return command;
+	}
+
 }

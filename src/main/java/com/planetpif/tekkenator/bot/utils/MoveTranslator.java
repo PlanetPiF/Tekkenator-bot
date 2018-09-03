@@ -7,4 +7,8 @@ public interface MoveTranslator {
 	String translate(Move move);
 	
 	String translate(String command);
+	
+	String translateToEmoji(Move move);
+	
+	String translateToEmoji(String command);
 }

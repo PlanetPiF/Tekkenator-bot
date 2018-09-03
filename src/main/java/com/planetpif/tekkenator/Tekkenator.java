@@ -73,6 +73,8 @@ public class Tekkenator implements CommandLineRunner {
 		
 		moveTranslator.translate("cd+4");
 		
+		moveTranslator.translateToEmoji("f, n, d, D/F+2");
+		
 		/*Fighter dj = fighterRepository.findById(147L).get();
 		
 		List<Move> moves = moveService.getMovesByFighter(dj);
