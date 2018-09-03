@@ -145,6 +145,9 @@ public class MoveTranslatorImpl implements MoveTranslator {
 		command = command.replace(TWO_BTN_EMOJI, "<:2_:485509719251877894>");
 		command = command.replace(BACK_EMOJI, "<:b_:485509719663050752>");
 		
+		//TODO add all of the move EMOJIs
+		//TODO find a way to set them dynamically for each server
+		
 		
 
 
