@@ -69,18 +69,18 @@ public class MoveTranslatorImpl implements MoveTranslator {
 	}
 	
 	// EMOJI PLACEHOLDERS
-	private static final String DOWN_EMOJI = "[DOWN]";
-	private static final String FORWARD_EMOJI = "[FOWARD]";
-	private static final String UP_EMOJI = "[UP]";
-	private static final String BACK_EMOJI = "[BACK]";
+	private static final String DOWN_EMOJI = "[D]";
+	private static final String FORWARD_EMOJI = "[F]";
+	private static final String UP_EMOJI = "[U]";
+	private static final String BACK_EMOJI = "[B]";
 	
-	private static final String DOWN_FORWARD_EMOJI = "[DOWN_FORWARD]";
-	private static final String DOWN_BACK_EMOJI = "[DOWN_BACK]";
+	private static final String DOWN_FORWARD_EMOJI = "[D_F]";
+	private static final String DOWN_BACK_EMOJI = "[D_B]";
 
-	private static final String UP_FORWARD = "[UP_FORWARD]";
-	private static final String UP_BACK = "[UP_BACK]";
+	private static final String UP_FORWARD = "[U_F]";
+	private static final String UP_BACK = "[U_B]";
 	
-	private static final String NEUTRAL_EMOJI = "[NEUTRAL]";
+	private static final String NEUTRAL_EMOJI = "[N]";
 	
 	private static final String ONE_BTN_EMOJI = "[1]";
 	private static final String TWO_BTN_EMOJI = "[2]";
@@ -134,6 +134,17 @@ public class MoveTranslatorImpl implements MoveTranslator {
 		command = command.replace("2", TWO_BTN_EMOJI);
 		command = command.replace("3", THREE_BTN_EMOJI);
 		command = command.replace("4", FOUR_BTN_EMOJI);
+		
+		//---  Replace temp strings with actual Emoji
+		
+		command = command.replace(DOWN_EMOJI, "<:d_:485509719579033655>");
+		command = command.replace(DOWN_FORWARD_EMOJI, "<:df:485509719851794451>");
+		command = command.replace(NEUTRAL_EMOJI, "<:n_:485509719549804545>");
+		
+		command = command.replace(FORWARD_EMOJI, "<:f_:485509719751131136>");
+		command = command.replace(TWO_BTN_EMOJI, "<:2_:485509719251877894>");
+		command = command.replace(BACK_EMOJI, "<:b_:485509719663050752>");
+		
 		
 
 

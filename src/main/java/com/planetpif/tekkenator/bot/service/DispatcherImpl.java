@@ -162,7 +162,7 @@ public class DispatcherImpl implements Dispatcher {
 		Move ewgf = new Move();
 		ewgf.setName("EWGF");
 		ewgf.setGifUrl("https://i.imgur.com/tn3QiLy.gif");
-		ewgf.setCommand("f, n, d, d/f+2");
+		ewgf.setCommand("f, N, d, d/f+2");
 		ewgf.setHitLevel("h");
 		ewgf.setDamage("23");
 		ewgf.setStartUpFrame("11~15 (14~)");
@@ -231,7 +231,8 @@ public class DispatcherImpl implements Dispatcher {
 		
 		eb.setDescription("*" + description + "*");
 		String commandAsEmoji =  "<:d_:485509719579033655>";
-		eb.addField(commandAsEmoji , commandAsEmoji , false);
+		commandAsEmoji = moveTranslator.translateToEmoji(move);
+		eb.addField(commandAsEmoji , "" , false);
 		
 		
 		
