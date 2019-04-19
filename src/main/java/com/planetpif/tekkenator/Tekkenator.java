@@ -16,6 +16,7 @@ import com.planetpif.tekkenator.bot.DiscordJdaBot;
 import com.planetpif.tekkenator.bot.service.MoveService;
 import com.planetpif.tekkenator.bot.utils.MoveTranslator;
 import com.planetpif.tekkenator.bot.utils.RandomUtils;
+import com.planetpif.tekkenator.bot.utils.games.CowsAndBullsCheckerImpl;
 import com.planetpif.tekkenator.dao.repository.FighterRepository;
 import com.planetpif.tekkenator.dao.repository.MoveRepository;
 import com.planetpif.tekkenator.model.Fighter;
@@ -57,12 +58,14 @@ public class Tekkenator implements CommandLineRunner {
 	private String token;
 
 	public static void main(String[] args) {
+		CowsAndBullsCheckerImpl checker = new CowsAndBullsCheckerImpl();
+		checker.findCowsAndBulls("asdf", "asfd");
 		SpringApplication.run(Tekkenator.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		this.executeTestStuff();
+		//this.executeTestStuff();
 		this.createBot();
 	}
 	

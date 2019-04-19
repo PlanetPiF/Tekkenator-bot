@@ -46,6 +46,7 @@ public class DispatcherImpl implements Dispatcher {
 	private static final int LOVE = 4;
 	private static final int ROLL = 5;
 	private static final int EWGF = 6;
+	private static final int GUESS = 7;
 	
 	private static final String SAFE_ICON = "https://cdn1.iconfinder.com/data/icons/color-bold-style/21/30-512.png";
 	private static final String UNSAFE_ICON = "https://st.depositphotos.com/1637332/2711/v/950/depositphotos_27116087-stock-illustration-bouton-internet-attention-exclamation-danger.jpg";
@@ -101,6 +102,9 @@ public class DispatcherImpl implements Dispatcher {
 		case "!ewgf":
 			commandType = EWGF;
 			break;
+		case "!g":
+			commandType = GUESS;
+			break;
 		default:
 			commandType = UNKNOWN;
 			break;
@@ -135,11 +139,15 @@ public class DispatcherImpl implements Dispatcher {
 			break;
 		case EWGF:
 			emb = getEmbededMove(null); //TODO implement move recognition
+			break;
+		case GUESS:
+			textMessage = "You tried rolling cows and bulls";
 		default:
 			break;
 		}
 		
 
+		// @ the user who triggered the command
 		textMessage += "\n" + event.getAuthor().getAsMention() + "\n";
 
 		// Last but not least - send message at the end of function

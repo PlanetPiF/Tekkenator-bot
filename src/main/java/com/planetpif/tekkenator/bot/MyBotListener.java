@@ -39,8 +39,9 @@ public class MyBotListener extends ListenerAdapter implements BotListenterInterf
 
 		log.info("Guild / Server name: "  + event.getGuild().getName()); //TODO this only works for text channels, not PMs
 		
+		// Test Emote retrieval, TODO move out of main loop?
 		List<Emote> emotes = event.getGuild().getEmotesByName("d_", true);
-		if(emotes != null) {
+		if(emotes != null && !emotes.isEmpty()) {
 			log.info("Received emotes from guild! - count is " + emotes.size());
 			Emote e = emotes.get(0);
 			log.info("Emote as mention: " + e.getAsMention());
