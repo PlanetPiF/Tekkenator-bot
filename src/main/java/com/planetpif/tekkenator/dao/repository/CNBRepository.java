@@ -8,4 +8,7 @@ import com.planetpif.tekkenator.model.CNBInfo;
 @Repository
 public interface CNBRepository extends CrudRepository<CNBInfo,Long> {
 
+	
+	CNBInfo getCNBInfoByProperty(String property);
+	CNBInfo findCNBInfoByProperty(String property);
 }

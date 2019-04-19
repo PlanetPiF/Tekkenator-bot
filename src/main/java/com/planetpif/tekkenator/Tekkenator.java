@@ -11,13 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.planetpif.tekkenator.bot.DiscordJdaBot;
+import com.planetpif.tekkenator.bot.service.CNBService;
 import com.planetpif.tekkenator.bot.service.MoveService;
 import com.planetpif.tekkenator.bot.utils.MoveTranslator;
 import com.planetpif.tekkenator.bot.utils.RandomUtils;
 import com.planetpif.tekkenator.bot.utils.games.CowsAndBullsCheckerImpl;
-import com.planetpif.tekkenator.dao.repository.CNBRepository;
 import com.planetpif.tekkenator.dao.repository.FighterRepository;
 import com.planetpif.tekkenator.dao.repository.MoveRepository;
+import com.planetpif.tekkenator.model.CNBInfo;
 /**
  * This is where the bot actually goes online. Run Tekkenator.main as a java program to start the bot.
  * (If packed into a jar, run via command line:   java -jar Tekkenator.jar)
@@ -43,7 +44,7 @@ public class Tekkenator implements CommandLineRunner {
 	private MoveRepository moveRepository;
 	
 	@Autowired
-	private CNBRepository cnbRepository;
+	private CNBService cnb;
 	
 	@Autowired
 	private FighterRepository fighterRepository;
@@ -66,6 +67,15 @@ public class Tekkenator implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		//this.executeTestStuff();
+		
+	/*	CNBInfo cnbInfoNew = new CNBInfo();
+		cnbInfoNew.setProperty("currentPlayer");
+		cnbInfoNew.setValue("LordPiF");
+		
+		cnb.saveCBNInfo(cnbInfoNew);*/
+		CNBInfo cnbFromDB = cnb.findByProperty("currentPlayer");
+		String asd = cnbFromDB.getValue();
+		log.info(asd);
 		this.createBot();
 	}
 	
