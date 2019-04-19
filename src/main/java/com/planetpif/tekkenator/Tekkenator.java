@@ -1,7 +1,5 @@
 package com.planetpif.tekkenator;
 
-import java.util.List;
-
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
@@ -17,10 +15,9 @@ import com.planetpif.tekkenator.bot.service.MoveService;
 import com.planetpif.tekkenator.bot.utils.MoveTranslator;
 import com.planetpif.tekkenator.bot.utils.RandomUtils;
 import com.planetpif.tekkenator.bot.utils.games.CowsAndBullsCheckerImpl;
+import com.planetpif.tekkenator.dao.repository.CNBRepository;
 import com.planetpif.tekkenator.dao.repository.FighterRepository;
 import com.planetpif.tekkenator.dao.repository.MoveRepository;
-import com.planetpif.tekkenator.model.Fighter;
-import com.planetpif.tekkenator.model.Move;
 /**
  * This is where the bot actually goes online. Run Tekkenator.main as a java program to start the bot.
  * (If packed into a jar, run via command line:   java -jar Tekkenator.jar)
@@ -44,6 +41,9 @@ public class Tekkenator implements CommandLineRunner {
 	
 	@Autowired
 	private MoveRepository moveRepository;
+	
+	@Autowired
+	private CNBRepository cnbRepository;
 	
 	@Autowired
 	private FighterRepository fighterRepository;
